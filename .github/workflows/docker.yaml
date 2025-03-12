@@ -1,11 +1,16 @@
-name: Docker
-
 on:
   workflow_dispatch:
+    inputs:
+      images_content:
+        description: 'Content to replace images.txt'
+        required: false
+        default: ''
   schedule:
     - cron: '0 0 * * *'  # 每天的00:00触发
   push:
     branches: [ main ]
+    paths:
+      - 'images.txt'
 
 
 env:
@@ -53,6 +58,11 @@ jobs:
 
     - name: Checkout Code
       uses: actions/checkout@v4
+      
+    - name: Check if images_content is provided
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.images_content != '' }}
+      run: |
+        echo "${{ github.event.inputs.images_content }}" > images.txt
 
     - name: Docker Setup Buildx
       uses: docker/setup-buildx-action@v3
