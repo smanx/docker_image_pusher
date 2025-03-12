@@ -1,5 +1,4 @@
 --platform=linux/arm64 smanx/ws-scrcpy:latest
---platform=linux/arm64 smanx/ws-scrcpy:v0.8.1
 --platform=linux/arm64 emptysuns/scrcpy-web:v0.1
 --platform=linux/amd64 emptysuns/scrcpy-web:v0.1
 --platform=linux/arm64 smanx/docker-wechat
